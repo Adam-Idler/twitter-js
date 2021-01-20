@@ -1,6 +1,6 @@
 class Twitter {
   constructor({ listElem }) {
-    this.tweets = new Posts(); 
+    this.tweets = new Posts();
     this.elements = {
       listElems: document.querySelector(listElem),
     }
@@ -33,20 +33,27 @@ class Posts {
 
   addPost(tweet) {
     const post = new Post(tweet);
+    post.id = this.addID();
     this.posts.push(post);
   }
 
+  addID() {
+    return Math.random().toString(36).substring(2, 3) + Math.random().toString(36).substring(2, 4);
+  }
+
   deletePost(id) {
-    
+
   }
 
   likePost(id) {
-
+    let post = this.posts.find(item => item.id === id);
+    post.changeLike();
   }
 }
 
 class Post {
   constructor(param) {
+    // Данные для каждого отдельного поста
     this.id = param.id;
     this.userName = param.userName;
     this.nickname = param.nickname;
@@ -58,7 +65,10 @@ class Post {
   }
   
   changeLike() {
+    // Функция, которая меняет значение переменной liked обратным значением, а потом проверяет:
+    // Если значение liked истинно, то количество лайков прибавится, если нет, то уменьшится
     this.liked = !this.liked;
+    if (!this.likes) this.likes = 0;
     if (this.liked) {
       this.likes++;
     } else {
@@ -70,5 +80,25 @@ class Post {
 const twitter = new Twitter({
   listElem: '.tweet-list',
 });
+
+twitter.tweets.addPost({
+  "userName": "Олег Васильевич",
+  "nickname": "vasil",
+  "text": "Где детонатор?",
+  "postDate": "02.14.2012, 05:00"
+}); 
+
+twitter.tweets.addPost({
+  "userName": "Дональд",
+  "nickname": "trampampam",
+  "text": "Зарегался на вк, хороший сервис и не банят",
+  "postDate": "02.05.2012, 13:27",
+  "img": "https://i2.wp.com/media.globalnews.ca/videostatic/news/vamt80qbaq-94ovmaxjqg/trumptwitterupdate.jpg?w=500&quality=70&strip=all",
+  "likes": 50
+}); 
+
+twitter.tweets.likePost(twitter.tweets.posts[0].id);
+twitter.tweets.likePost(twitter.tweets.posts[1].id);
+twitter.tweets.likePost(twitter.tweets.posts[0].id);
 
 console.log(twitter);
