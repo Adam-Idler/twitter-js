@@ -42,7 +42,6 @@ class Posts {
   }
 
   deletePost(id) {
-    let post = this.posts.find(item => item.id === id);
     this.posts.splice(id, 1);
   }
 
@@ -98,10 +97,18 @@ twitter.tweets.addPost({
   "likes": 50
 }); 
 
+twitter.tweets.addPost({
+  "userName": "Raamin",
+  "nickname": "raamin",
+  "text": "По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.",
+  "postDate": "03.11.2012, 10:30",
+  "likes": 999
+}); 
+
 twitter.tweets.likePost(twitter.tweets.posts[0].id);
 twitter.tweets.likePost(twitter.tweets.posts[1].id);
 twitter.tweets.likePost(twitter.tweets.posts[0].id);
 
-twitter.tweets.deletePost(twitter.tweets.posts[0].id)
+twitter.tweets.deletePost(twitter.tweets.posts[2].id);
 
 console.log(twitter);
