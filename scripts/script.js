@@ -37,7 +37,7 @@ class Posts {
   }
 
   deletePost(id) {
-
+    
   }
 
   likePost(id) {
