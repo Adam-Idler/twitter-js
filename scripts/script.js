@@ -46,8 +46,9 @@ class Posts {
   }
 
   likePost(id) {
-    let post = this.posts.find(item => item.id === id);
-    post.changeLike();
+    this.posts.forEach(item => {
+      if (item.id === id) item.changeLike(); 
+    });
   }
 }
 
