@@ -42,7 +42,8 @@ class Posts {
   }
 
   deletePost(id) {
-
+    let post = this.posts.find(item => item.id === id);
+    this.posts.splice(id, 1);
   }
 
   likePost(id) {
@@ -100,5 +101,7 @@ twitter.tweets.addPost({
 twitter.tweets.likePost(twitter.tweets.posts[0].id);
 twitter.tweets.likePost(twitter.tweets.posts[1].id);
 twitter.tweets.likePost(twitter.tweets.posts[0].id);
+
+twitter.tweets.deletePost(twitter.tweets.posts[0].id)
 
 console.log(twitter);
